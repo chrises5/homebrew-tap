@@ -21,7 +21,7 @@ cask "dataweave-editor" do
     # Install DataWeave CLI if not present
     unless File.exist?("/opt/homebrew/bin/dw") || File.exist?("/usr/local/bin/dw")
       ohai "Installing DataWeave CLI (dw)..."
-      system_command "#{HOMEBREW_PREFIX}/bin/brew", args: ["tap", "mulesoft/data-weave-cli"]
+      system_command "#{HOMEBREW_PREFIX}/bin/brew", args: ["tap", "mulesoft-labs/data-weave"]
       system_command "#{HOMEBREW_PREFIX}/bin/brew", args: ["install", "dw"]
     end
     # Sign app for macOS Gatekeeper
