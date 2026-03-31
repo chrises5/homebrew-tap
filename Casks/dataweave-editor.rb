@@ -18,6 +18,13 @@ cask "dataweave-editor" do
   app "DataWeave Editor.app"
 
   postflight do
+    # Install DataWeave CLI if not present
+    unless File.exist?("/opt/homebrew/bin/dw") || File.exist?("/usr/local/bin/dw")
+      ohai "Installing DataWeave CLI (dw)..."
+      system_command "#{HOMEBREW_PREFIX}/bin/brew", args: ["tap", "mulesoft/data-weave-cli"]
+      system_command "#{HOMEBREW_PREFIX}/bin/brew", args: ["install", "dw"]
+    end
+    # Sign app for macOS Gatekeeper
     system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/DataWeave Editor.app"]
     system_command "/usr/bin/find", args: [
       "#{appdir}/DataWeave Editor.app/Contents/Frameworks",
@@ -26,13 +33,6 @@ cask "dataweave-editor" do
     ]
     system_command "/usr/bin/codesign", args: ["--force", "--deep", "--sign", "-", "#{appdir}/DataWeave Editor.app"]
   end
-
-  caveats <<~EOS
-    DataWeave Editor requires the DataWeave CLI (dw).
-    Install it with:
-      brew tap mulesoft/data-weave-cli
-      brew install dw
-  EOS
 
   zap trash: [
     "~/Library/Application Support/dataweave-editor",
