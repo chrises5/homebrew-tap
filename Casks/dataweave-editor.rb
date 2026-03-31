@@ -22,6 +22,11 @@ cask "dataweave-editor" do
     Install it with:
       brew tap mulesoft/data-weave-cli
       brew install dw
+
+    First launch: macOS may block the app because it is not code-signed.
+    To fix, run this once after installing:
+      xattr -cr "/Applications/DataWeave Editor.app"
+    Then open the app normally.
   EOS
 
   zap trash: [
