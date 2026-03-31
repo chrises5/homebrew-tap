@@ -36,6 +36,6 @@ cask "dataweave-editor" do
 
   zap trash: [
     "~/Library/Application Support/dataweave-editor",
-    "~/Library/Preferences/com.kws.dataweave-editor.plist",
+    "~/Library/Preferences/com.chrises5.dataweave-editor.plist",
   ]
 end
