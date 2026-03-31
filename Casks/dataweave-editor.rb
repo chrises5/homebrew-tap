@@ -19,7 +19,12 @@ cask "dataweave-editor" do
 
   postflight do
     system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/DataWeave Editor.app"]
-    system_command "/usr/bin/codesign", args: ["--force", "--sign", "-", "#{appdir}/DataWeave Editor.app"]
+    system_command "/usr/bin/find", args: [
+      "#{appdir}/DataWeave Editor.app/Contents/Frameworks",
+      "-type", "f", "-perm", "+111",
+      "-exec", "/usr/bin/codesign", "--force", "--sign", "-", "{}", ";"
+    ]
+    system_command "/usr/bin/codesign", args: ["--force", "--deep", "--sign", "-", "#{appdir}/DataWeave Editor.app"]
   end
 
   caveats <<~EOS
