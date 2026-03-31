@@ -17,16 +17,16 @@ cask "dataweave-editor" do
 
   app "DataWeave Editor.app"
 
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/DataWeave Editor.app"]
+    system_command "/usr/bin/codesign", args: ["--force", "--sign", "-", "#{appdir}/DataWeave Editor.app"]
+  end
+
   caveats <<~EOS
     DataWeave Editor requires the DataWeave CLI (dw).
     Install it with:
       brew tap mulesoft/data-weave-cli
       brew install dw
-
-    First launch: macOS may block the app because it is not code-signed.
-    To fix, run this once after installing:
-      xattr -cr "/Applications/DataWeave Editor.app"
-    Then open the app normally.
   EOS
 
   zap trash: [
