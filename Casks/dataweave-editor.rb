@@ -1,13 +1,13 @@
 cask "dataweave-editor" do
-  version "1.2.0"
+  version "1.3.0"
 
   on_arm do
-    sha256 "222ca3d5020c0a8486d138108a128ed483effbb0ed4c023b0098520c200be332"
+    sha256 "0f8e358a6c6a2ecab4e7548eb0ddd43b579f581bea4a86b4d5cfc6ea95c07e46"
     url "https://github.com/chrises5/dataweave-editor/releases/download/v#{version}/DataWeave.Editor-#{version}-arm64-mac.zip"
   end
 
   on_intel do
-    sha256 "e4a554fe2f34a7b60b8fbe379866aae7930f43822f7ee57c5771787305d82ef0"
+    sha256 "ad55e030070b2321435d81354fb300dd4d8b4f2d4db08e639d0b9e99f15b120c"
     url "https://github.com/chrises5/dataweave-editor/releases/download/v#{version}/DataWeave.Editor-#{version}-mac.zip"
   end
 
